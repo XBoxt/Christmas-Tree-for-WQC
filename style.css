@@ -1,0 +1,76 @@
+:root {
+  --neon-gold: #ffd700;
+  --neon-green: #00ff9d;
+}
+
+body, html {
+  margin: 0; padding: 0; width: 100%; height: 100%;
+  background: #020202; overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  user-select: none;
+}
+
+#canvas-container {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+}
+
+/* UI 层：磨砂玻璃 */
+#ui-layer {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 10; pointer-events: none;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 40px; box-sizing: border-box;
+}
+
+.header {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px; border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  animation: slideDown 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+h1 {
+  margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: 2px;
+  background: linear-gradient(135deg, #fff 0%, var(--neon-gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.sub-text {
+  font-size: 0.8rem; letter-spacing: 1px; color: rgba(255, 255, 255, 0.6); margin-top: 5px;
+}
+
+/* 交互按钮区 */
+.actions {
+  pointer-events: auto;
+  display: flex; gap: 15px;
+  animation: slideUp 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white; padding: 12px 24px; border-radius: 30px;
+  cursor: pointer; font-size: 0.9rem; font-weight: 600;
+  transition: all 0.3s ease; backdrop-filter: blur(5px);
+}
+
+.btn:hover {
+  background: var(--neon-gold); color: black; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Loading 画面 */
+#loader {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: #000; z-index: 99; display: flex; align-items: center; justify-content: center;
+  transition: opacity 1s ease;
+}
+.loading-text {
+  color: var(--neon-green); font-family: monospace; letter-spacing: 4px; animation: blink 1s infinite;
+}
+
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes blink { 50% { opacity: 0.5; } }
